@@ -14,6 +14,13 @@ const Goods = () => {
     const [total, setTotal] = useState(0);
     const limit = 4;
 
+    const handleDelete = (id) => {
+        const filteredEvents = products.filter((event) => {
+            return event.id !== id;
+        });
+        setProducts(filteredEvents);
+    };
+
     useEffect(() => {
         setLoading(true);
         axios
@@ -65,6 +72,11 @@ const Goods = () => {
                     {item.price} Br
                 </p>
             </div>
+            <button
+                onClick={() => handleDelete(item.id)}
+                className="py-1 px-2 rounded-xl bg-red-400 text-white ml-3">
+                Delete
+            </button>
             <div className="flex w-full justify-between items-center px-3 md:px-6 absolute good__box">
                 <select className="border rounded-3xl flex items-center">
                     <option value="1">1 шт.</option>

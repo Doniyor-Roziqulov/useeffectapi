@@ -80,6 +80,13 @@ const Stock = () => {
         </option>
     ));
 
+    const handleDelete = (id) => {
+        const filteredEvents = products.filter((event) => {
+            return event.id !== id;
+        });
+        setProducts(filteredEvents);
+    };
+
     const proitem = products?.map((item) => (
         <li
             className="good__item sm:w-72 relative pt-3 pb-16 border border-white transition-all rounded-3xl hover:bg-slate-50 hover:border hover:border-slate-200"
@@ -103,6 +110,11 @@ const Stock = () => {
                     {item.price} Br
                 </p>
             </div>
+            <button
+                onClick={() => handleDelete(item.id)}
+                className="py-1 px-2 rounded-xl bg-red-400 text-white ml-3">
+                Delete
+            </button>
             <div className="flex w-full justify-between items-center px-3 absolute good__box">
                 <select className="border rounded-3xl flex items-center">
                     <option value="1">1 шт.</option>
